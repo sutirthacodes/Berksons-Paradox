@@ -1,3 +1,8 @@
 # Berksons-Paradox
-This project demonstrates Berkson's Paradox using Google Play Store app ratings &amp; reviews. Analyzes correlation changes between all apps and a 'top-tier' subset. Includes data loading, cleaning, and visualizations to illustrate how selection bias can invert observed relationships.
-Language: Python
+The dataset used in our analysis is a secondary dataset obtained from Kaggle (https://www.kaggle.com/datasets/lava18/google-play-store-apps). It contains information on Android applications from the Google Play Store, which we shall be utilizing to demonstrate Berkson's Paradox using app ratings and reviews. 
+The original dataset consists of 10841 rows (containing information on an individual app), and 13 columns(containing information on a certain characteristic of the apps). We shall only be considering these two columns in our analysis:
+‘Ratings’ (average user rating of an app): Numeric, continuous.
+‘Review’ (number of user reviews of an app): Numeric, discrete.
+We discard the observations on ‘Ratings’ having value NaN, and fix the discrepancy in the data of the 10473rd app, where ‘Rating’= 19 and ‘Reviews’=3.0M originally, which were fixed to 1.9 and 19 respectively, which is apparent when we look at the original dataset, that the observations for the 10473rd app have shifted to the left by one column. The cleaned dataset contains data on 9367 apps.
+We have applied logarithmic transformation on ‘Reviews’ to manage its wide range and reduce the impact of outliers for better analysis and visualization.
+To justify Berkson’s Paradox, we filter the top apps having the top 10% ratings (≥ 4.7) or top 10% reviews (≥ 587683.19), classifying them as ‘top-tier’ apps The number of such apps is 1963. According to Berkson’s Paradox, the apps with higher reviews must have lower ratings or highly – rated apps must have low number of reviews. To verify this fact, we perform two data visualizations to verify this paradox.  
